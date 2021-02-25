@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>GRID</h1>
+      <form>
+        <select id="myColor">
+          <option value = "white">White</option>
+          <option value = "green">Green</option>
+          <option value = "red">Red</option>
+          <option value = "yellow">Yellow</option>
+          <option value = "blue">Blue</option>
+        </select>
+      </form>
+      <div id="header">
+	<button id="addRow" type="button" onclick = "addRow()">ADD ROW</button>
+	<button id="addColumn" type="button" onclick = "addCol()">ADD COLUMN</button>
+	<button id="removeRow" type="button" onclick="deleteRow()">REMOVE ROW</button>
+	<button id="removeColumn" type="button" onclick="deleteColumn()">REMOVE COLUMN</button>
+	<button id="fillUncolored" onclick="uncoloredFill()" type="button">FILL UNCOLORED</button>
+	<button id="fillAll" type="button" onclick = "fill()">FILL ALL</button>
+	<button id="clear" type="button" onclick="clearAll()">CLEAR ALL</button>
+      </div>
+    </div>
+
+    <!--CONTAINS ALL THE ROWS AND COLUMNS-->
+    <table>
+    </table>
+    <script src="script.js"></script>
+  </body>
+</html>
