@@ -57,3 +57,34 @@ function deleteRow() {
   }
 
 }
+
+// REMOVE COLUMN -------------------------
+function deleteColumn() {
+  // end early if no columns exists
+  if (columns == 0) {
+    return;
+  }
+
+  // get grid
+  let grid = document.getElementsByTagName("table")[0];
+
+  // get rows
+  let tableRows = document.getElementsByTagName("tr");
+
+  // remove last child for each row
+  for(let i = 0; i < rows; i++){
+    console.log(i);
+    let row = tableRows[i];
+    row.removeChild(row.lastChild);
+  }
+
+  // decrement column count
+  columns--;
+
+  // if columes becomes 0 reset row count and delete rows
+  if (columns == 0) {
+    grid.innerHTML = "";
+    rows = 0;
+  }
+
+}
