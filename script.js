@@ -4,96 +4,98 @@ let columns = 0;
 let color = "navy";
 
 // ADD ROW -------------------------
-function addRow() {
-  let grid = document.getElementsByTagName("table")[0];
-  let newRow = document.createElement("tr");
+const addRow = () => {
+  const grid = document.getElementById("grid");
+  const newRow = document.createElement("tr");
 
   // edge case: the table is empty
   if (columns == 0) columns = 1;
 
-  // Populate the row with squares
+  // populate the row with squares
   for (let i = 0; i < columns; i++) {
     let cell = document.createElement("td");
     newRow.appendChild(cell);
   }
+
+  // append the new row with as many cols as necessary to existing grid
   grid.appendChild(newRow);
-  rows += 1;
-}
+
+  // number of rows has now increased
+  rows++;
+};
 
 // ADD COLUMN -------------------------
-function addCol() {
-  let grid = document.getElementsByTagName("table")[0];
-  let tableRows = document.getElementsByTagName("tr");
+const addCol = () => {
+  // get grid element
+  const grid = document.getElementById("grid");
 
   // edge case: there are no rows to add a cell to
   if (rows == 0) {
-    grid.appendChild(document.createElement("tr"));
+    const row = document.createElement("tr");
+    grid.appendChild(row);
     rows++;
   }
 
-  // Populate the col with squares
-  for (let i = 0; i < rows; i++) {
-    let cell = document.createElement("td");
-    tableRows[i].appendChild(cell);
+  // go through each row
+  for (const row of grid.rows) {
+    // populate the col with squares
+    const cell = document.createElement("td");
+    row.appendChild(cell);
   }
-  columns += 1;
-}
+
+  // number of columns has now increased
+  columns++;
+};
 
 // REMOVE ROW -------------------------
-function deleteRow() {
+const deleteRow = () => {
   // end early if no rows exists
-  if (rows == 0) {
-    return;
-  }
+  if (rows == 0) return;
 
-  // get grid element
-  let grid = document.getElementsByTagName("table")[0];
+  // get grid
+  const grid = document.getElementById("grid");
 
   // remove last child (row)
   grid.removeChild(grid.lastChild);
+
+  // number of rows has now decreased
   rows--;
 
   // if rows becomes 0 reset columns
-  if (rows == 0) {
-    columns = 0;
-  }
-}
+  if (rows == 0) columns = 0;
+};
 
 // REMOVE COLUMN -------------------------
-function deleteColumn() {
+const deleteColumn = () => {
   // end early if no columns exists
-  if (columns == 0) {
-    return;
-  }
+  if (columns == 0) return;
 
   // get grid
-  let grid = document.getElementsByTagName("table")[0];
+  const grid = document.getElementById("grid");
 
   // get rows
   let tableRows = document.getElementsByTagName("tr");
 
   // remove last child for each row
-  for (let i = 0; i < rows; i++) {
-    console.log(i);
-    let row = tableRows[i];
+  for (const row of grid.rows) {
     row.removeChild(row.lastChild);
   }
 
-  // decrement column count
+  // number of columns has now decreased
   columns--;
 
-  // if columes becomes 0 reset row count and delete rows
+  // if columns becomes 0 reset row count and delete rows
   if (columns == 0) {
     grid.innerHTML = "";
     rows = 0;
   }
-}
+};
 
 // helper function to apply an effect to all cells
 // takes in a callback which is given the current cell
-function applyToCells(callback) {
+const applyToCells = callback => {
   // get grid
-  let grid = document.getElementsByTagName("table")[0];
+  const grid = document.getElementById("grid");
 
   // iterate over grid rows
   for (const row of grid.rows) {
@@ -103,10 +105,10 @@ function applyToCells(callback) {
       callback(col);
     }
   }
-}
+};
 
 // FILL UNCOLORED ------------------------
-function uncoloredFill() {
+const uncoloredFill = () => {
   applyToCells(col => {
     // check to see if color was set for cell
     if (col.style.backgroundColor == "") {
@@ -114,12 +116,10 @@ function uncoloredFill() {
       col.style.backgroundColor = color;
     }
   });
-}
+};
 
 // FILL ALL ------------------------------
-function fill() {
-  applyToCells(col => {
-    // set to currently selected color regardless of prev color
-    col.style.backgroundColor = color;
-  });
-}
+const fill = () => {
+  // set to currently selected color regardless of prev color
+  applyToCells(col => (col.style.backgroundColor = color));
+};
