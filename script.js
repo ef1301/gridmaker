@@ -115,3 +115,11 @@ function uncoloredFill() {
     }
   });
 }
+
+// FILL ALL ------------------------------
+function fill() {
+  applyToCells(col => {
+    // set to currently selected color regardless of prev color
+    col.style.backgroundColor = color;
+  });
+}
