@@ -4,7 +4,7 @@ let columns = 0;
 let color = "navy";
 
 // ADD ROW -------------------------
-function addRow() {
+const addRow = () => {
   let grid = document.getElementsByTagName("table")[0];
   let newRow = document.createElement("tr");
 
@@ -18,10 +18,10 @@ function addRow() {
   }
   grid.appendChild(newRow);
   rows += 1;
-}
+};
 
 // ADD COLUMN -------------------------
-function addCol() {
+const addCol = () => {
   let grid = document.getElementsByTagName("table")[0];
   let tableRows = document.getElementsByTagName("tr");
 
@@ -37,10 +37,10 @@ function addCol() {
     tableRows[i].appendChild(cell);
   }
   columns += 1;
-}
+};
 
 // REMOVE ROW -------------------------
-function deleteRow() {
+const deleteRow = () => {
   // end early if no rows exists
   if (rows == 0) {
     return;
@@ -57,10 +57,10 @@ function deleteRow() {
   if (rows == 0) {
     columns = 0;
   }
-}
+};
 
 // REMOVE COLUMN -------------------------
-function deleteColumn() {
+const deleteColumn = () => {
   // end early if no columns exists
   if (columns == 0) {
     return;
@@ -87,11 +87,11 @@ function deleteColumn() {
     grid.innerHTML = "";
     rows = 0;
   }
-}
+};
 
 // helper function to apply an effect to all cells
 // takes in a callback which is given the current cell
-function applyToCells(callback) {
+const applyToCells = callback => {
   // get grid
   let grid = document.getElementsByTagName("table")[0];
 
@@ -103,10 +103,10 @@ function applyToCells(callback) {
       callback(col);
     }
   }
-}
+};
 
 // FILL UNCOLORED ------------------------
-function uncoloredFill() {
+const uncoloredFill = () => {
   applyToCells(col => {
     // check to see if color was set for cell
     if (col.style.backgroundColor == "") {
@@ -114,12 +114,12 @@ function uncoloredFill() {
       col.style.backgroundColor = color;
     }
   });
-}
+};
 
 // FILL ALL ------------------------------
-function fill() {
+const fill = () => {
   applyToCells(col => {
     // set to currently selected color regardless of prev color
     col.style.backgroundColor = color;
   });
-}
+};
