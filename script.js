@@ -39,17 +39,19 @@ function addCol() {
 
 // REMOVE ROW -------------------------
 function deleteRow() {
+  // end early if no rows exists
   if (rows == 0) {
     return;
   }
 
+  // get grid element
   let grid = document.getElementsByTagName("table")[0];
 
-  if (grid.lastChild) {
-    grid.removeChild(grid.lastChild);
-    rows--;
-  }
+  // remove last child (row)
+  grid.removeChild(grid.lastChild);
+  rows--;
 
+  // if rows becomes 0 reset columns
   if (rows == 0) {
     columns = 0;
   }
