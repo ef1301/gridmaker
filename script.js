@@ -74,7 +74,6 @@ const deleteColumn = () => {
 
   // remove last child for each row
   for (let i = 0; i < rows; i++) {
-    console.log(i);
     let row = tableRows[i];
     row.removeChild(row.lastChild);
   }
@@ -82,7 +81,7 @@ const deleteColumn = () => {
   // decrement column count
   columns--;
 
-  // if columes becomes 0 reset row count and delete rows
+  // if columns becomes 0 reset row count and delete rows
   if (columns == 0) {
     grid.innerHTML = "";
     rows = 0;
