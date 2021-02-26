@@ -89,8 +89,9 @@ function deleteColumn() {
   }
 }
 
-// FILL UNCOLORED ------------------------
-function uncoloredFill() {
+// helper function to apply an effect to all cells
+// takes in a callback which is given the current cell
+function applyToCells(callback) {
   // get grid
   let grid = document.getElementsByTagName("table")[0];
 
@@ -98,11 +99,27 @@ function uncoloredFill() {
   for (const row of grid.rows) {
     // iterate over each row's col
     for (const col of row.cells) {
-      // check to see if color was set for cell
-      if (col.style.backgroundColor == "") {
-        // if no color was set, set to currently selected color
-        col.style.backgroundColor = color;
-      }
+      // apply callback to the cell
+      callback(col);
     }
   }
+}
+
+// FILL UNCOLORED ------------------------
+function uncoloredFill() {
+  applyToCells(col => {
+    // check to see if color was set for cell
+    if (col.style.backgroundColor == "") {
+      // if no color was set, set to currently selected color
+      col.style.backgroundColor = color;
+    }
+  });
+}
+
+// FILL ALL ------------------------------
+function fill() {
+  applyToCells(col => {
+    // set to currently selected color regardless of prev color
+    col.style.backgroundColor = color;
+  });
 }
