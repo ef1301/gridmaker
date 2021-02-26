@@ -123,3 +123,9 @@ const fill = () => {
   // set to currently selected color regardless of prev color
   applyToCells(col => (col.style.backgroundColor = color));
 };
+
+// CLEAR ALL -----------------------------
+const clearAll = () => {
+  // clear color regardless of prev color
+  applyToCells(col => (col.style.backgroundColor = ""));
+};
