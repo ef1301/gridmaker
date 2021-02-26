@@ -36,3 +36,22 @@ function addCol() {
   }
   columns += 1;
 }
+
+// REMOVE ROW -------------------------
+function deleteRow() {
+  if (rows == 0) {
+    return;
+  }
+
+  let grid = document.getElementsByTagName("table")[0];
+
+  if (grid.lastChild) {
+    grid.removeChild(grid.lastChild);
+    rows--;
+  }
+
+  if (rows == 0) {
+    columns = 0;
+  }
+
+}
