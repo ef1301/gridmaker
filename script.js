@@ -12,7 +12,7 @@ function addRow() {
   if (columns == 0) columns = 1;
 
   // Populate the row with squares
-  for (let i = 0; i < columns; i++){
+  for (let i = 0; i < columns; i++) {
     let cell = document.createElement("td");
     newRow.appendChild(cell);
   }
@@ -32,7 +32,7 @@ function addCol() {
   }
 
   // Populate the col with squares
-  for(let i = 0; i < rows; i++){
+  for (let i = 0; i < rows; i++) {
     let cell = document.createElement("td");
     tableRows[i].appendChild(cell);
   }
@@ -57,7 +57,6 @@ function deleteRow() {
   if (rows == 0) {
     columns = 0;
   }
-
 }
 
 // REMOVE COLUMN -------------------------
@@ -74,7 +73,7 @@ function deleteColumn() {
   let tableRows = document.getElementsByTagName("tr");
 
   // remove last child for each row
-  for(let i = 0; i < rows; i++){
+  for (let i = 0; i < rows; i++) {
     console.log(i);
     let row = tableRows[i];
     row.removeChild(row.lastChild);
@@ -88,5 +87,22 @@ function deleteColumn() {
     grid.innerHTML = "";
     rows = 0;
   }
+}
 
+// FILL UNCOLORED ------------------------
+function uncoloredFill() {
+  // get grid
+  let grid = document.getElementsByTagName("table")[0];
+
+  // iterate over grid rows
+  for (const row of grid.rows) {
+    // iterate over each row's col
+    for (const col of row.cells) {
+      // check to see if color was set for cell
+      if (col.style.backgroundColor == "") {
+        // if no color was set, set to currently selected color
+        col.style.backgroundColor = color;
+      }
+    }
+  }
 }
