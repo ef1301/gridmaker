@@ -14,6 +14,7 @@ const addRow = () => {
   // populate the row with squares
   for (let i = 0; i < columns; i++) {
     let cell = document.createElement("td");
+    cell.addEventListener("click",colorChange);
     newRow.appendChild(cell);
   }
 
@@ -32,6 +33,7 @@ const addCol = () => {
   // edge case: there are no rows to add a cell to
   if (rows == 0) {
     const row = document.createElement("tr");
+    cell.addEventListener("click",colorChange);
     grid.appendChild(row);
     rows++;
   }
@@ -40,6 +42,7 @@ const addCol = () => {
   for (const row of grid.rows) {
     // populate the col with squares
     const cell = document.createElement("td");
+    cell.addEventListener("click",colorChange);
     row.appendChild(cell);
   }
 
@@ -107,11 +110,17 @@ const applyToCells = callback => {
   }
 };
 
+//Color Selector
+let colorSelector = document.getElementById("color_choose"), color_change;
+const colorSelect = () => {
+  color_change = colorSelector.value;
+};
+
 // FILL UNCOLORED ------------------------
 const uncoloredFill = () => {
   applyToCells(col => {
     // check to see if color was set for cell
-    if (col.style.backgroundColor == "") {
+    if (col.style.backgroundColor == "" || col.style.backgroundColor == "white") {
       // if no color was set, set to currently selected color
       col.style.backgroundColor = color;
     }
@@ -128,4 +137,10 @@ const fill = () => {
 const clearAll = () => {
   // clear color regardless of prev color
   applyToCells(col => (col.style.backgroundColor = ""));
+};
+
+//Function to color the cell on user prompt
+function colorChange(){
+  console.log(this);
+  this.style.backgroundColor = color_change;
 };
