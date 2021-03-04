@@ -122,7 +122,7 @@ const uncoloredFill = () => {
     // check to see if color was set for cell
     if (col.style.backgroundColor == "" || col.style.backgroundColor == "white") {
       // if no color was set, set to currently selected color
-      col.style.backgroundColor = color;
+      col.style.backgroundColor = color_change;
     }
   });
 };
@@ -130,7 +130,7 @@ const uncoloredFill = () => {
 // FILL ALL ------------------------------
 const fill = () => {
   // set to currently selected color regardless of prev color
-  applyToCells(col => (col.style.backgroundColor = color));
+  applyToCells(col => (col.style.backgroundColor = color_change));
 };
 
 // CLEAR ALL -----------------------------
