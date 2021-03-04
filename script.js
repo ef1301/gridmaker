@@ -110,7 +110,7 @@ const applyToCells = callback => {
   }
 };
 
-//Color Selector
+//Function to implement the Color Selector
 let colorSelector = document.getElementById("color_choose"), color_change;
 const colorSelect = () => {
   color_change = colorSelector.value;
