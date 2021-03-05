@@ -1,7 +1,5 @@
 let rows = 0;
 let columns = 0;
-// TODO: change this dynamically based on selector
-let color = "navy";
 
 // ADD ROW -------------------------
 const addRow = () => {
