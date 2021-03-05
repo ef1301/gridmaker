@@ -141,6 +141,5 @@ const clearAll = () => {
 
 //Function to color the cell on user prompt
 function colorChange(){
-  console.log(this);
   this.style.backgroundColor = color_change;
 };
