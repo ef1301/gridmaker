@@ -31,7 +31,6 @@ const addCol = () => {
   // edge case: there are no rows to add a cell to
   if (rows == 0) {
     const row = document.createElement("tr");
-    cell.addEventListener("click",colorChange);
     grid.appendChild(row);
     rows++;
   }
