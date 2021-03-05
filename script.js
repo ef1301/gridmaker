@@ -1,7 +1,5 @@
 let rows = 0;
 let columns = 0;
-// TODO: change this dynamically based on selector
-let color = "navy";
 
 // ADD ROW -------------------------
 const addRow = () => {
@@ -14,6 +12,7 @@ const addRow = () => {
   // populate the row with squares
   for (let i = 0; i < columns; i++) {
     let cell = document.createElement("td");
+    cell.addEventListener("click",colorChange);
     newRow.appendChild(cell);
   }
 
@@ -40,6 +39,7 @@ const addCol = () => {
   for (const row of grid.rows) {
     // populate the col with squares
     const cell = document.createElement("td");
+    cell.addEventListener("click",colorChange);
     row.appendChild(cell);
   }
 
@@ -107,13 +107,20 @@ const applyToCells = callback => {
   }
 };
 
+//Function to implement the Color Selector
+let colorSelector, color_change;
+colorSelector = document.getElementById("color_choose");
+const colorSelect = () => {
+  color_change = colorSelector.value;
+};
+
 // FILL UNCOLORED ------------------------
 const uncoloredFill = () => {
   applyToCells(col => {
     // check to see if color was set for cell
-    if (col.style.backgroundColor == "") {
+    if (col.style.backgroundColor == "" || col.style.backgroundColor == "white") {
       // if no color was set, set to currently selected color
-      col.style.backgroundColor = color;
+      col.style.backgroundColor = color_change;
     }
   });
 };
@@ -121,11 +128,16 @@ const uncoloredFill = () => {
 // FILL ALL ------------------------------
 const fill = () => {
   // set to currently selected color regardless of prev color
-  applyToCells(col => (col.style.backgroundColor = color));
+  applyToCells(col => (col.style.backgroundColor = color_change));
 };
 
 // CLEAR ALL -----------------------------
 const clearAll = () => {
   // clear color regardless of prev color
   applyToCells(col => (col.style.backgroundColor = ""));
+};
+
+//Function to color the cell on user prompt
+function colorChange(){
+  this.style.backgroundColor = color_change;
 };
